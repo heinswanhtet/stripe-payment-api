@@ -14,7 +14,7 @@ const rateLimiter = require('express-rate-limit')
 const connectDB = require('./db/connection')
 
 // routers
-
+const stripeRouter = require('./routes/stripe')
 
 // middleware
 const notFoundMiddleware = require('./middleware/not-found')
@@ -36,6 +36,8 @@ app.use(express.json())
 app.get('/', (req, res) => {
     res.send('Hello World')
 })
+
+app.use('/stripe', stripeRouter)
 
 app.use(notFoundMiddleware)
 app.use(errorHandlerMiddleWare)
