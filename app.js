@@ -19,6 +19,7 @@ const stripeRouter = require('./routes/stripe')
 // middleware
 const notFoundMiddleware = require('./middleware/not-found')
 const errorHandlerMiddleWare = require('./middleware/error-handler')
+const { webhook } = require('./controllers/stripe')
 
 app.set('trust proxy', 1)
 app.use(
@@ -31,13 +32,12 @@ app.use(helmet())
 app.use(xss())
 app.use(cors())
 
-app.use(express.json())
-
 app.get('/', (req, res) => {
     res.send('Hello World')
 })
 
 app.use('/stripe', stripeRouter)
+app.use(express.json())
 
 app.use(notFoundMiddleware)
 app.use(errorHandlerMiddleWare)
