@@ -19,7 +19,6 @@ const stripeRouter = require('./routes/stripe')
 // middleware
 const notFoundMiddleware = require('./middleware/not-found')
 const errorHandlerMiddleWare = require('./middleware/error-handler')
-const { webhook } = require('./controllers/stripe')
 
 app.set('trust proxy', 1)
 app.use(
